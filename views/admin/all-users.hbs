@@ -1,0 +1,29 @@
+<section>
+    <div class="container">
+       
+       <h2>All Orders</h2>
+        <table class="table mt-5">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Address</th>
+                    <th scope="col">zip</th>
+                    <th scope="col">Mobile</th>
+                    <th scope="col">price</th>
+                    <th scope="col">Payment</th>
+                    <th scope="col">Status</th>
+                   
+                </tr>
+            </thead>
+            <tbody>
+                {{#each orderItems}}
+                <tr>
+                    <td>{{this.date}}</td>
+                    <td>{{this.deliveryDetails.name}}</td>
+                    <td>{{this.deliveryDetails.address}}</td>
+                    <td>{{this.deliveryDetails.zip}}</td>
+                    <td>{{this.deliveryDetails.mobile}}</td>
+                    <td>{{this.totalPrice}}</td>
+                    <td>{{this.paymentMethod}}</td>
+                    <td>{{this.status}}</td>

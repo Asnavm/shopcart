@@ -1,0 +1,42 @@
+<section>
+    <div class="container">
+        <div class="row mt-5" >
+            <a href="/user/view-user" class="btn btn-success ml-auto" >add more product</a>
+        </div>
+
+        <table class="table mt-5">
+            <thead>
+                <tr>
+                    <th scope="col">Date</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Address</th>
+                    <th scope="col">zip</th>
+                    <th scope="col">Mobile</th>
+                    <th scope="col">price</th>
+                    <th scope="col">Payment</th>
+                    <th scope="col">Status</th>
+                   
+                </tr>
+            </thead>
+            <tbody>
+                {{#each orders}}
+                <tr>
+                    <td>{{this.date}}</td>
+                    <td>{{this.deliveryDetails.name}}</td>
+                    <td>{{this.deliveryDetails.address}}</td>
+                    <td>{{this.deliveryDetails.zip}}</td>
+                    <td>{{this.deliveryDetails.mobile}}</td>
+                    <td>{{this.totalPrice}}</td>
+                    <td>{{this.paymentMethod}}</td>
+                    <td>{{this.status}}</td>
+                   
+                    <td><a href="/view-order-products/{{this._id}}" class="btn btn-primary">View-Products</a></td>
+                    
+                </tr>
+                {{/each}}
+
+            </tbody>
+        </table>
+
+    </div>
+</section>

@@ -1,0 +1,80 @@
+<section>
+    <div class="container">
+       
+       <h2>All Orders</h2>
+        <table class="table mt-5">
+            <thead>
+                <tr>
+                    <th scope="col">Date</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Address</th>
+                    <th scope="col">zip</th>
+                    <th scope="col">Mobile</th>
+                    <th scope="col">price</th>
+                    <th scope="col">Payment</th>
+                    <th scope="col">Status</th>
+                   
+                </tr>
+            </thead>
+            <tbody>
+                {{#each orderItems}}
+                <tr>
+                    <td>{{this.date}}</td>
+                    <td>{{this.deliveryDetails.name}}</td>
+                    <td>{{this.deliveryDetails.address}}</td>
+                    <td>{{this.deliveryDetails.zip}}</td>
+                    <td>{{this.deliveryDetails.mobile}}</td>
+                    <td>{{this.totalPrice}}</td>
+                    <td>{{this.paymentMethod}}</td>
+                    <td>{{this.status}}</td>
+                    <td>
+                        <form action="" class="status-form">
+                            <input type="hidden" name="orderId" value="{{this._id}}"/>
+                        <select class="form-select form-select-sm status-dropdown" name="status">
+                            <option value="">change status</option>
+                            <option value="shipped">shipped</option>
+                            <option value="delivered">Delivered</option>
+                            <option value="cancelled">Cancelled</option>
+                        </select>
+                        <button class="btn btn-sm btn-primary update-status-btn">update</button>
+                        </form>
+                    </td>
+                   
+                    {{!-- <td><a href="/view-order-products/{{this._id}}" class="btn btn-primary">View-Products</a></td> --}}
+                    
+                </tr>
+                {{/each}}
+
+            </tbody>
+        </table>
+
+    </div>
+</section>
+<script>
+  $(document).ready(function () {
+    $('.status-form').on('submit', function (e) {
+      e.preventDefault(); // prevent normal form submit
+      
+      const $form = $(this);
+      const formData = $form.serialize();
+
+      $.ajax({
+        url: '/admin/change-status',
+        method: 'POST',
+        data: formData,
+        success: function (response) {
+          if (response.Success) {
+            alert("Status updated successfully!");
+            location.reload();
+          } else {
+            alert("Error updating status.");
+          }
+        },
+        error: function (err) {
+          console.error(err);
+          alert("Something went wrong.");
+        }
+      });
+    });
+  });
+</script>
